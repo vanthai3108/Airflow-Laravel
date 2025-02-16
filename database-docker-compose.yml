@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+    mysql:
+        image: mysql:8.0
+        restart: unless-stopped
+        ports:
+            - "3307:3306"
+        volumes:
+            - .data/mysql:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=app
+            - MYSQL_USER=app
+            - MYSQL_PASSWORD=secret
+        command: mysqld --sql_mode=""
+        networks:
+          - airflow-laravel-network
+
+networks:
+    airflow-laravel-network:
+        driver: bridge
+        name: airflow-laravel-network

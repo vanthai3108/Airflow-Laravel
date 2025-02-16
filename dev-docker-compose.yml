@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    php:
+        build:
+            context: .
+            dockerfile: DockerfileDev
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - .:/var/www
+        networks:
+            - airflow-laravel-network
+
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8085:80"
+        volumes:
+            - .:/var/www
+            - ./nginx.default.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - airflow-laravel-network
+
+networks:
+    airflow-laravel-network:
+        external: true
