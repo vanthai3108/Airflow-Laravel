@@ -1,5 +1,33 @@
 # Apache Airflow with Laravel App
 
+## Version Infos
+```
+Airflow: 2.10.5
+Postgres: 13 (for airflow)
+Redis: 7.2 (for airflow)
+Laravel: 11.42.1
+PHP: 8.4.4
+MySQL: 8.0
+```
+
+## Architecture
+
+### Airflow Architecture
+```
+├── dags - contains all dags for airflow run
+├── logs - constains all logs
+├── emails
+│    └── airflow
+├── plugins
+├── airflow.cfg - config file
+└── airflow-webserver.pid
+```
+
+### Laravel Architecture
+```
+Laravel 11 default architecture
+```
+
 ## Setup Local
 
 ### Up Database for Laravel app: database-docker-compose.yml
@@ -15,7 +43,7 @@ docker-compose -f database-docker-compose.yml up -d
 sh deploy.sh (build new)
 ```
 
-Wait too long, check airflow-worker looking for errors
+If you wait too long, check airflow-worker looking for errors
 ```
 docker-compose logs airflow-worker
 ```
